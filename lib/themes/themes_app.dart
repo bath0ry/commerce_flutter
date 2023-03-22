@@ -3,4 +3,5 @@ import 'package:flutter/material.dart';
 
 ThemeData AppTheme = ThemeData(
     primaryColor: ThemeColors.primaryColor,
-    primarySwatch: ThemeColors.primaryColor);
+    primarySwatch: ThemeColors.primaryColor,
+    fontFamily: 'Genos');

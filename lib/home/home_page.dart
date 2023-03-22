@@ -4,6 +4,7 @@ import 'package:commerce_flutter/components/view/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -34,7 +35,7 @@ class HomePage extends StatelessWidget {
                           BoxCattegory(),
                           BoxCattegory(),
                           BoxCattegory(),
-                          BoxCattegory()
+                          BoxCattegory(),
                         ],
                         scrollDirection: Axis.horizontal,
                       ),
@@ -44,6 +45,15 @@ class HomePage extends StatelessWidget {
               )
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Produtos',
+              style: GoogleFonts.eduNswActFoundation(
+                  textStyle:
+                      TextStyle(fontSize: 30, fontWeight: FontWeight.w500)),
+            ),
+          )
         ],
       ),
     );

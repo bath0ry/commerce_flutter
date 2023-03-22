@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:commerce_flutter/themes/themes_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,10 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: ThemeColors.primaryColor,
+          gradient: LinearGradient(
+              colors: ThemeColors.gradienteColorsHeader,
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight),
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(15),
               bottomRight: Radius.circular(15))),

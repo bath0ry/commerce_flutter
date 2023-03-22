@@ -18,7 +18,7 @@ class BoxCattegory extends StatelessWidget {
           width: 100,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: ThemeColors.primaryColor,
+            color: Color.fromARGB(255, 219, 205, 48),
           ),
           child: Center(
             child: Text(
