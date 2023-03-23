@@ -13,12 +13,20 @@ class BoxCattegory extends StatelessWidget {
       splashColor: Colors.white,
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 7),
         child: Container(
           width: 100,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withOpacity(0.7),
+                  spreadRadius: 3,
+                  blurRadius: 4,
+                  offset: Offset(0, 3))
+            ],
             borderRadius: BorderRadius.circular(15),
-            color: Color.fromARGB(255, 219, 205, 48),
+            gradient:
+                LinearGradient(colors: ThemeColors.gradienteColorsButtons),
           ),
           child: Center(
             child: Text(

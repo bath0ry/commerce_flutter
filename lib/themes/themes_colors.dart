@@ -10,4 +10,8 @@ class ThemeColors {
     Color.fromARGB(255, 185, 170, 35),
     Color.fromARGB(255, 129, 123, 64)
   ];
+  static const List<Color> gradienteColorsButtons = [
+    Color.fromARGB(255, 138, 104, 30),
+    Color.fromARGB(255, 214, 158, 54)
+  ];
 }
