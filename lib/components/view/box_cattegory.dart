@@ -9,29 +9,23 @@ class BoxCattegory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      splashColor: Colors.white,
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, bottom: 7),
-        child: Container(
-          width: 100,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.withOpacity(0.7),
-                  spreadRadius: 3,
-                  blurRadius: 4,
-                  offset: Offset(0, 3))
-            ],
-            borderRadius: BorderRadius.circular(15),
-            gradient:
-                LinearGradient(colors: ThemeColors.gradienteColorsButtons),
-          ),
-          child: Center(
-            child: Text(
-              'data',
-            ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 7),
+      child: Center(
+        child: TextButton(
+          onPressed: () {},
+          style: ButtonStyle(
+              elevation: MaterialStateProperty.all(6),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8))),
+              fixedSize: MaterialStateProperty.all(Size(120, 0)),
+              backgroundColor: MaterialStateProperty.all(Colors.black),
+              shadowColor:
+                  MaterialStateProperty.all(Color.fromARGB(255, 53, 53, 53))),
+          child: Text(
+            'data',
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),

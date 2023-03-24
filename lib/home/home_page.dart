@@ -19,13 +19,9 @@ class HomePage extends StatelessWidget {
           Column(
             children: [
               Header(),
-              Padding(
-                padding: const EdgeInsets.only(left: 5, right: 5),
-                child: DivisonWidget(),
-              ),
               Center(
                 child: Text(
-                  'MyStyle Clothes',
+                  'Hi! Gh Clothes',
                   style: GoogleFonts.oleoScriptSwashCaps(
                       textStyle:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.w500)),

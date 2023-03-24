@@ -1,3 +1,4 @@
+import 'package:commerce_flutter/components/view/products_list.dart';
 import 'package:commerce_flutter/data/models/store_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,33 +40,7 @@ class _ProductsState extends State<Products> {
           List<StoreModel> data = snapshot.data as List<StoreModel>;
           return SizedBox(
             height: MediaQuery.of(context).size.height,
-            child: ListView.builder(
-                itemCount: data.length,
-                itemBuilder: ((context, index) {
-                  return SizedBox(
-                    height: 400,
-                    child: Column(
-                      children: [
-                        Text(
-                          data[index].title,
-                          overflow: TextOverflow.clip,
-                          maxLines: 3,
-                          textAlign: TextAlign.center,
-                        ),
-                        Image.network(
-                          data[index].image,
-                          width: 150,
-                          height: 150,
-                        ),
-                        Text(
-                          data[index].price.toString(),
-                          overflow: TextOverflow.clip,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  );
-                })),
+            child: ProductsList(data: data),
           );
         } else {
           return Container();
