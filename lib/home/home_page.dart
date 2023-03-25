@@ -1,19 +1,54 @@
-import 'package:commerce_flutter/components/view/box_cattegory.dart';
+import 'package:commerce_flutter/components/view/clothings_products.dart';
 import 'package:commerce_flutter/components/view/divison.dart';
+import 'package:commerce_flutter/components/view/eletronics_products.dart';
 import 'package:commerce_flutter/components/view/header.dart';
-import 'package:commerce_flutter/components/view/products.dart';
+import 'package:commerce_flutter/components/view/allproducts.dart';
+import 'package:commerce_flutter/components/view/jewelery_products.dart';
 import 'package:commerce_flutter/data/service/store_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentPage = 0;
+  @override
   Widget build(BuildContext context) {
+    final List<Widget> pagesDestination = [
+      Products(),
+      EletronicsProducts(),
+      Jewelery(),
+      Clothings()
+    ];
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.all_inbox),
+            label: 'All Products',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.computer), label: 'Eletronics'),
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Jewelery'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.local_mall), label: 'Clothing'),
+        ],
+        currentIndex: _currentPage,
+        selectedItemColor: Colors.black,
+        onTap: (index) {
+          setState(() {
+            _currentPage = index;
+          });
+        },
+      ),
       body: ListView(
         children: [
           Column(
@@ -27,35 +62,13 @@ class HomePage extends StatelessWidget {
                           TextStyle(fontSize: 30, fontWeight: FontWeight.w500)),
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30, bottom: 10),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: 40,
-                      child: ListView(
-                        children: [
-                          BoxCattegory(),
-                          BoxCattegory(),
-                          BoxCattegory(),
-                          BoxCattegory(),
-                          BoxCattegory(),
-                          BoxCattegory(),
-                        ],
-                        scrollDirection: Axis.horizontal,
-                      ),
-                    ),
-                  )
-                ],
-              ),
               Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
                 child: DivisonWidget(),
-              )
+              ),
             ],
           ),
-          Products()
+          pagesDestination.elementAt(_currentPage)
         ],
       ),
     );

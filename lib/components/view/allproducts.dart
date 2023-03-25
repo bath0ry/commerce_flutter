@@ -1,4 +1,4 @@
-import 'package:commerce_flutter/components/view/products_list.dart';
+import 'package:commerce_flutter/components/view/allproducts_list.dart';
 import 'package:commerce_flutter/data/models/store_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';

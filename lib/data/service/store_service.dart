@@ -13,6 +13,7 @@ class StoreService {
       final response = await dio.get(url);
       final data = List<StoreModel>.from(
           response.data.map((e) => StoreModel.fromJson(e))).toList();
+
       return data;
     } catch (e) {
       throw Exception('Erro ao pegar dados');

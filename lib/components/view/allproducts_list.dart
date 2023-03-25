@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/models/store_model.dart';
 
@@ -14,7 +15,7 @@ class ProductsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
-        height: 575,
+        height: 600,
         child: ListView.builder(
             itemCount: data.length,
             itemBuilder: ((context, index) {
@@ -46,10 +47,9 @@ class ProductsList extends StatelessWidget {
                           overflow: TextOverflow.clip,
                           maxLines: 2,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: GoogleFonts.cantoraOne(
+                              textStyle:
+                                  TextStyle(color: Colors.black, fontSize: 20)),
                         ),
                       ),
                       Padding(
@@ -67,26 +67,25 @@ class ProductsList extends StatelessWidget {
                             '\$' '${data[index].price.toString()}',
                             overflow: TextOverflow.clip,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w600,
-                                shadows: <Shadow>[
+                            style: GoogleFonts.cantoraOne(
+                                textStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w500,
+                                    shadows: <Shadow>[
                                   Shadow(
                                     offset: Offset(1, 3),
                                     blurRadius: 8.0,
                                     color: Color.fromARGB(255, 100, 100, 100),
                                   ),
-                                ]),
+                                ])),
                           ),
                           TextButton(
                             onPressed: () {},
-                            child: Text(
-                              'Add to cart',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                              ),
-                            ),
+                            child: Text('Add to cart',
+                                style: GoogleFonts.cantoraOne(
+                                    textStyle: TextStyle(
+                                        color: Colors.white, fontSize: 18))),
                             style: ButtonStyle(
                                 elevation: MaterialStateProperty.all(10),
                                 shape: MaterialStateProperty.all<
