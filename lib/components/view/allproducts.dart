@@ -1,10 +1,8 @@
 import 'package:commerce_flutter/components/view/allproducts_list.dart';
 import 'package:commerce_flutter/data/models/store_model.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../../data/service/store_service.dart';
 
@@ -29,11 +27,11 @@ class _ProductsState extends State<Products> {
     return FutureBuilder(
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: const CircularProgressIndicator(),
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         } else if (snapshot.hasError) {
-          return Center(
+          return const Center(
             child: Text('erro'),
           );
         } else if (snapshot.connectionState == ConnectionState.done) {

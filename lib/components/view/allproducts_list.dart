@@ -15,7 +15,7 @@ class ProductsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
-        height: 600,
+        height: 450,
         child: ListView.builder(
             itemCount: data.length,
             itemBuilder: ((context, index) {
@@ -24,7 +24,7 @@ class ProductsList extends StatelessWidget {
                     left: 60, right: 60, top: 60, bottom: 60),
                 child: Container(
                   height: 350,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
@@ -48,8 +48,8 @@ class ProductsList extends StatelessWidget {
                           maxLines: 2,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.cantoraOne(
-                              textStyle:
-                                  TextStyle(color: Colors.black, fontSize: 20)),
+                              textStyle: const TextStyle(
+                                  color: Colors.black, fontSize: 20)),
                         ),
                       ),
                       Padding(
@@ -68,7 +68,7 @@ class ProductsList extends StatelessWidget {
                             overflow: TextOverflow.clip,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.cantoraOne(
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 25,
                                     fontWeight: FontWeight.w500,
@@ -84,7 +84,7 @@ class ProductsList extends StatelessWidget {
                             onPressed: () {},
                             child: Text('Add to cart',
                                 style: GoogleFonts.cantoraOne(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                         color: Colors.white, fontSize: 18))),
                             style: ButtonStyle(
                                 elevation: MaterialStateProperty.all(10),
@@ -93,12 +93,12 @@ class ProductsList extends StatelessWidget {
                                     RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(8))),
-                                fixedSize:
-                                    MaterialStateProperty.all(Size(120, 0)),
+                                fixedSize: MaterialStateProperty.all(
+                                    const Size(120, 0)),
                                 backgroundColor:
                                     MaterialStateProperty.all(Colors.black),
                                 shadowColor: MaterialStateProperty.all(
-                                    Color.fromARGB(255, 77, 77, 77))),
+                                    const Color.fromARGB(255, 77, 77, 77))),
                           )
                         ],
                       ),

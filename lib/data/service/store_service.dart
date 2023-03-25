@@ -19,4 +19,28 @@ class StoreService {
       throw Exception('Erro ao pegar dados');
     }
   }
+
+  Future<List<StoreModel>> getElectronics() async {
+    const urlElec = 'https://fakestoreapi.com/products/category/electronics';
+    try {
+      final response = await dio.get(urlElec);
+      final dataElec = List<StoreModel>.from(
+          response.data.map((e) => StoreModel.fromJson(e))).toList();
+      return dataElec;
+    } catch (e) {
+      throw Exception('Erro ao pegar dados');
+    }
+  }
+
+  Future<List<StoreModel>> getJawelery() async {
+    const urlJawe = 'https://fakestoreapi.com/products/category/jewelery';
+    try {
+      final response = await dio.get(urlJawe);
+      final dataJawelery = List<StoreModel>.from(
+          response.data.map((e) => StoreModel.fromJson(e))).toList();
+      return dataJawelery;
+    } catch (e) {
+      throw Exception('Erro ao pegar dados');
+    }
+  }
 }

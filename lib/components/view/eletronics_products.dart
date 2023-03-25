@@ -2,8 +2,7 @@ import 'package:commerce_flutter/data/models/store_model.dart';
 import 'package:commerce_flutter/data/service/store_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class EletronicsProducts extends StatefulWidget {
@@ -25,31 +24,30 @@ class _EletronicsProductsState extends State<EletronicsProducts> {
     return FutureBuilder(
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: const CircularProgressIndicator(),
+          return const Center(
+            child: CircularProgressIndicator(),
           );
         } else if (snapshot.hasError) {
-          return Center(
+          return const Center(
             child: Text('erro'),
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
           List<StoreModel> data = snapshot.data as List<StoreModel>;
-          final indexes = [8, 9, 10, 11, 12];
-          final selectedData = indexes.map((e) => data[e]).toList();
+
           return SizedBox(
             height: MediaQuery.of(context).size.height,
             child: SingleChildScrollView(
               child: SizedBox(
-                height: 600,
+                height: 430,
                 child: ListView.builder(
-                    itemCount: selectedData.length,
+                    itemCount: data.length,
                     itemBuilder: ((context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(
                             left: 60, right: 60, top: 60, bottom: 60),
                         child: Container(
                           height: 350,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 255, 255, 255),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
@@ -70,19 +68,19 @@ class _EletronicsProductsState extends State<EletronicsProducts> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 15),
                                 child: Text(
-                                  selectedData[index].title,
+                                  data[index].title,
                                   overflow: TextOverflow.clip,
                                   maxLines: 2,
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.cantoraOne(
-                                      textStyle: TextStyle(
+                                      textStyle: const TextStyle(
                                           color: Colors.black, fontSize: 20)),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(15),
                                 child: Image.network(
-                                  selectedData[index].image,
+                                  data[index].image,
                                   width: 150,
                                   height: 150,
                                 ),
@@ -93,11 +91,11 @@ class _EletronicsProductsState extends State<EletronicsProducts> {
                                 children: [
                                   Text(
                                     '\$'
-                                    '${selectedData[index].price.toString()}',
+                                    '${data[index].price.toString()}',
                                     overflow: TextOverflow.clip,
                                     textAlign: TextAlign.center,
                                     style: GoogleFonts.cantoraOne(
-                                        textStyle: TextStyle(
+                                        textStyle: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 25,
                                             fontWeight: FontWeight.w500,
@@ -112,11 +110,6 @@ class _EletronicsProductsState extends State<EletronicsProducts> {
                                   ),
                                   TextButton(
                                     onPressed: () {},
-                                    child: Text('Add to cart',
-                                        style: GoogleFonts.cantoraOne(
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18))),
                                     style: ButtonStyle(
                                         elevation:
                                             MaterialStateProperty.all(10),
@@ -126,12 +119,17 @@ class _EletronicsProductsState extends State<EletronicsProducts> {
                                                 borderRadius:
                                                     BorderRadius.circular(8))),
                                         fixedSize: MaterialStateProperty.all(
-                                            Size(120, 0)),
+                                            const Size(120, 0)),
                                         backgroundColor:
                                             MaterialStateProperty.all(
                                                 Colors.black),
                                         shadowColor: MaterialStateProperty.all(
-                                            Color.fromARGB(255, 77, 77, 77))),
+                                            const Color.fromARGB(255, 77, 77, 77))),
+                                    child: Text('Add to cart',
+                                        style: GoogleFonts.cantoraOne(
+                                            textStyle: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18))),
                                   )
                                 ],
                               ),
@@ -147,8 +145,7 @@ class _EletronicsProductsState extends State<EletronicsProducts> {
           return Container();
         }
       },
-      future: service.getStore(),
+      future: service.getElectronics(),
     );
-    ;
   }
 }

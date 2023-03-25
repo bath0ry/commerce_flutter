@@ -4,10 +4,10 @@ import 'package:commerce_flutter/components/view/eletronics_products.dart';
 import 'package:commerce_flutter/components/view/header.dart';
 import 'package:commerce_flutter/components/view/allproducts.dart';
 import 'package:commerce_flutter/components/view/jewelery_products.dart';
-import 'package:commerce_flutter/data/service/store_service.dart';
+import 'package:commerce_flutter/pages/sale_page.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,15 +22,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pagesDestination = [
-      Products(),
-      EletronicsProducts(),
-      Jewelery(),
-      Clothings()
+      const Products(),
+      const EletronicsProducts(),
+      const Jewelery(),
+      const Clothings()
     ];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.all_inbox),
             label: 'All Products',
@@ -53,17 +53,31 @@ class _HomePageState extends State<HomePage> {
         children: [
           Column(
             children: [
-              Header(),
+              const Header(),
               Center(
                 child: Text(
-                  'Hi! Gh Clothes',
+                  'Hi! Gh Store',
                   style: GoogleFonts.oleoScriptSwashCaps(
-                      textStyle:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w500)),
+                      textStyle: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.w500)),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
+                padding: const EdgeInsets.all(5),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Sales()));
+                  },
+                  child: Image.asset(
+                    'assets/images/Captura de tela 2023-03-25 164656.png',
+                    height: 150,
+                    width: 300,
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 8, right: 8, top: 8),
                 child: DivisonWidget(),
               ),
             ],
