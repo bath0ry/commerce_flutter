@@ -1,5 +1,7 @@
+import 'package:commerce_flutter/data/models/items_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../data/models/store_model.dart';
 
@@ -81,7 +83,17 @@ class ProductsList extends StatelessWidget {
                                 ])),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Provider.of<ItemsStore>(context, listen: false)
+                                  .addItem(StoreModel(
+                                      id: data[index].id,
+                                      title: data[index].title,
+                                      price: data[index].price,
+                                      description: data[index].description,
+                                      category: data[index].category,
+                                      image: data[index].image,
+                                      rating: data[index].rating));
+                            },
                             child: Text('Add to cart',
                                 style: GoogleFonts.cantoraOne(
                                     textStyle: const TextStyle(

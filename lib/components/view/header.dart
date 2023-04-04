@@ -1,3 +1,4 @@
+import 'package:commerce_flutter/pages/cart_page.dart';
 import 'package:commerce_flutter/themes/themes_colors.dart';
 
 import 'package:flutter/material.dart';
@@ -34,7 +35,12 @@ class Header extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: IconButton(
               splashRadius: 1,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => new CartPage(
+                          data: [],
+                        )));
+              },
               icon: const Icon(Icons.shopping_cart),
               style: ButtonStyle(
                   backgroundColor:

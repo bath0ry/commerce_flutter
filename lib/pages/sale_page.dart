@@ -29,7 +29,7 @@ class _SalesState extends State<Sales> {
       '105.0',
       '110.0',
       '500.0',
-      '900.0'
+      '900.0',
     ];
     return Scaffold(
       appBar: AppBar(

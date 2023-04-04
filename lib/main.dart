@@ -1,10 +1,13 @@
+import 'package:commerce_flutter/data/models/items_model.dart';
 import 'package:commerce_flutter/themes/themes_app.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'home/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => ItemsStore(itemsCart: []), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
