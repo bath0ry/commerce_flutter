@@ -7,7 +7,8 @@ import 'home/home_page.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-      create: (context) => ItemsStore(itemsCart: []), child: MyApp()));
+      create: (context) => ItemsStore(itemsCart: [], data: [], itemsQuanty: 0),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

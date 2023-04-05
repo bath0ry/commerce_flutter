@@ -37,9 +37,7 @@ class Header extends StatelessWidget {
               splashRadius: 1,
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => new CartPage(
-                          data: [],
-                        )));
+                    builder: (BuildContext context) => new CartPage()));
               },
               icon: const Icon(Icons.shopping_cart),
               style: ButtonStyle(

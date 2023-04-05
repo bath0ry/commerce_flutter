@@ -86,13 +86,14 @@ class ProductsList extends StatelessWidget {
                             onPressed: () {
                               Provider.of<ItemsStore>(context, listen: false)
                                   .addItem(StoreModel(
-                                      id: data[index].id,
-                                      title: data[index].title,
-                                      price: data[index].price,
-                                      description: data[index].description,
-                                      category: data[index].category,
-                                      image: data[index].image,
-                                      rating: data[index].rating));
+                                id: data[index].id,
+                                title: data[index].title,
+                                price: data[index].price,
+                                description: data[index].description,
+                                category: data[index].category,
+                                image: data[index].image,
+                                rating: data[index].rating,
+                              ));
                             },
                             child: Text('Add to cart',
                                 style: GoogleFonts.cantoraOne(

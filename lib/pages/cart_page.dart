@@ -19,6 +19,7 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   late final StoreService service;
+
   void initState() {
     service = StoreService(Dio());
     super.initState();
@@ -42,6 +43,7 @@ class _CartPageState extends State<CartPage> {
               child: Text('erro'),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
+            List<StoreModel> data = snapshot.data as List<StoreModel>;
             return SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Consumer<ItemsStore>(builder: (BuildContext context,
@@ -50,18 +52,19 @@ class _CartPageState extends State<CartPage> {
                     itemCount: itemsStore.itemsCart.length,
                     itemBuilder: ((context, index) {
                       return Padding(
-                        padding: const EdgeInsets.only(
-                            left: 60, right: 60, top: 60, bottom: 60),
+                        padding: const EdgeInsets.all(10.0),
                         child: Container(
-                          height: 350,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
-                            ),
+                          height: 110,
+                          width: 110,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.shade600,
+                                  spreadRadius: 1,
+                                  blurRadius: 15,
+                                  blurStyle: BlurStyle.solid)
+                            ],
                             border: Border(
                                 top: BorderSide(width: 1, color: Colors.black),
                                 bottom:
@@ -70,75 +73,67 @@ class _CartPageState extends State<CartPage> {
                                 right:
                                     BorderSide(width: 1, color: Colors.black)),
                           ),
-                          child: Column(
+                          child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(top: 15),
-                                child: Text(
-                                  itemsStore.itemsCart[index].title,
-                                  overflow: TextOverflow.clip,
-                                  maxLines: 2,
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.cantoraOne(
-                                      textStyle: const TextStyle(
-                                          color: Colors.black, fontSize: 20)),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(15),
+                                padding: const EdgeInsets.only(
+                                    left: 8, top: 8, bottom: 8),
                                 child: Image.network(
                                   itemsStore.itemsCart[index].image,
-                                  width: 150,
-                                  height: 150,
+                                  width: 100,
+                                  height: 100,
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(
-                                    '\$'
-                                    '${itemsStore.itemsCart[index].price.toString()}',
-                                    overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.cantoraOne(
-                                        textStyle: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.w500,
-                                            shadows: <Shadow>[
-                                          Shadow(
-                                            offset: Offset(1, 3),
-                                            blurRadius: 8.0,
-                                            color: Color.fromARGB(
-                                                255, 100, 100, 100),
-                                          ),
-                                        ])),
-                                  ),
-                                  TextButton(
-                                    onPressed: () {},
-                                    style: ButtonStyle(
-                                        elevation:
-                                            MaterialStateProperty.all(10),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8))),
-                                        fixedSize: MaterialStateProperty.all(
-                                            const Size(120, 0)),
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.black),
-                                        shadowColor: MaterialStateProperty.all(
-                                            const Color.fromARGB(255, 77, 77, 77))),
-                                    child: Text('Add to cart',
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        itemsStore.itemsCart[index].title,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                        textAlign: TextAlign.center,
                                         style: GoogleFonts.cantoraOne(
                                             textStyle: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18))),
-                                  )
-                                ],
+                                                color: Colors.black,
+                                                fontSize: 16)),
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {
+                                              Provider.of<ItemsStore>(context,
+                                                      listen: false)
+                                                  .decrementItem(index);
+                                            },
+                                            icon: Icon(Icons.remove)),
+                                        Text(
+                                          itemsStore.itemsQuanty.toString(),
+                                          style: TextStyle(fontSize: 17),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              Provider.of<ItemsStore>(context,
+                                                      listen: false)
+                                                  .incrementItem(index);
+                                            },
+                                            icon: Icon(Icons.add)),
+                                        IconButton(
+                                            onPressed: () {
+                                              Provider.of<ItemsStore>(context,
+                                                      listen: false)
+                                                  .removeItem(index);
+                                            },
+                                            icon: Icon(Icons.delete_forever)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
