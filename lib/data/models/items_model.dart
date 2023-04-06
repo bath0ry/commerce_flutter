@@ -1,12 +1,16 @@
+import 'package:commerce_flutter/data/models/item_quanty.dart';
 import 'package:commerce_flutter/data/models/store_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class ItemsStore extends ChangeNotifier {
   List<StoreModel> itemsCart = [];
 
-  int itemsQuanty;
-  ItemsStore(
-      {required this.itemsCart, required this.data, required this.itemsQuanty});
+  int itemsQuanty = 1;
+
+  ItemsStore({
+    required this.itemsCart,
+    required this.data,
+  });
 
   final List<StoreModel> data;
   void addItem(StoreModel item) {
@@ -19,7 +23,7 @@ class ItemsStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  void incrementItem(item) {
+  void incrementItem(int item) {
     if (itemsQuanty < 5) {
       itemsQuanty++;
     }
@@ -27,7 +31,7 @@ class ItemsStore extends ChangeNotifier {
     notifyListeners();
   }
 
-  void decrementItem(item) {
+  void decrementItem(int item) {
     if (itemsQuanty > 1) {
       itemsQuanty--;
     }

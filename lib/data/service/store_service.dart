@@ -1,3 +1,4 @@
+import 'package:commerce_flutter/data/models/items_model.dart';
 import 'package:commerce_flutter/data/models/store_model.dart';
 import 'package:dio/dio.dart';
 
@@ -13,7 +14,7 @@ class StoreService {
       final response = await dio.get(url);
       final data = List<StoreModel>.from(
           response.data.map((e) => StoreModel.fromJson(e))).toList();
-
+      final jsonList = response.data;
       return data;
     } catch (e) {
       throw Exception('Erro ao pegar dados');

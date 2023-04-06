@@ -7,7 +7,10 @@ import 'home/home_page.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-      create: (context) => ItemsStore(itemsCart: [], data: [], itemsQuanty: 0),
+      create: (context) => ItemsStore(
+            itemsCart: [],
+            data: [],
+          ),
       child: MyApp()));
 }
 
