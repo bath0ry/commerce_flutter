@@ -1,5 +1,6 @@
 import 'package:commerce_flutter/data/models/items_model.dart';
 import 'package:commerce_flutter/data/service/store_service.dart';
+import 'package:commerce_flutter/pages/info_page.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../../data/models/store_model.dart';
 
-class ProductsList extends StatefulWidget {
+class ProductsList extends StatelessWidget {
   const ProductsList({
     Key? key,
     required this.data,
@@ -16,23 +17,12 @@ class ProductsList extends StatefulWidget {
   final List<StoreModel> data;
 
   @override
-  State<ProductsList> createState() => _ProductsListState();
-}
-
-class _ProductsListState extends State<ProductsList> {
-  late final StoreService service;
-  void initState() {
-    service = StoreService(Dio());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: SizedBox(
         height: 450,
         child: ListView.builder(
-            itemCount: widget.data.length,
+            itemCount: data.length,
             itemBuilder: ((context, index) {
               return Padding(
                 padding: const EdgeInsets.only(
@@ -55,22 +45,35 @@ class _ProductsListState extends State<ProductsList> {
                   ),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: Text(
-                          widget.data[index].title,
-                          overflow: TextOverflow.clip,
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.cantoraOne(
-                              textStyle: const TextStyle(
-                                  color: Colors.black, fontSize: 20)),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => InfoPage(
+                                      imageProduct: data[index].image,
+                                      titleProduct: data[index].title,
+                                      descriptionProduct:
+                                          data[index].description,
+                                      priceProduct: data[index].price)));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 15),
+                          child: Text(
+                            data[index].title,
+                            overflow: TextOverflow.clip,
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.cantoraOne(
+                                textStyle: const TextStyle(
+                                    color: Colors.black, fontSize: 20)),
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15),
                         child: Image.network(
-                          widget.data[index].image,
+                          data[index].image,
                           width: 150,
                           height: 150,
                         ),
@@ -79,7 +82,7 @@ class _ProductsListState extends State<ProductsList> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            '\$' '${widget.data[index].price.toString()}',
+                            '\$' '${data[index].price.toString()}',
                             overflow: TextOverflow.clip,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.cantoraOne(
@@ -99,13 +102,13 @@ class _ProductsListState extends State<ProductsList> {
                             onPressed: () {
                               Provider.of<ItemsStore>(context, listen: false)
                                   .addItem(StoreModel(
-                                id: widget.data[index].id,
-                                title: widget.data[index].title,
-                                price: widget.data[index].price,
-                                description: widget.data[index].description,
-                                category: widget.data[index].category,
-                                image: widget.data[index].image,
-                                rating: widget.data[index].rating,
+                                id: data[index].id,
+                                title: data[index].title,
+                                price: data[index].price,
+                                description: data[index].description,
+                                category: data[index].category,
+                                image: data[index].image,
+                                rating: data[index].rating,
                               ));
                             },
                             child: Text('Add to cart',
