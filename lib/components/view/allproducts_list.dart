@@ -1,7 +1,7 @@
 import 'package:commerce_flutter/data/models/items_model.dart';
-import 'package:commerce_flutter/data/service/store_service.dart';
+
 import 'package:commerce_flutter/pages/info_page.dart';
-import 'package:dio/dio.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -72,12 +72,27 @@ class ProductsList extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Image.network(
-                          data[index].image,
-                          width: 150,
-                          height: 150,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => InfoPage(
+                                        imageProduct: data[index].image,
+                                        titleProduct: data[index].title,
+                                        descriptionProduct:
+                                            data[index].description,
+                                        priceProduct: data[index].price,
+                                        ratingProduct: data[index].rating,
+                                      )));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Image.network(
+                            data[index].image,
+                            width: 150,
+                            height: 150,
+                          ),
                         ),
                       ),
                       Row(
@@ -113,10 +128,6 @@ class ProductsList extends StatelessWidget {
                                 rating: data[index].rating,
                               ));
                             },
-                            child: Text('Add to cart',
-                                style: GoogleFonts.cantoraOne(
-                                    textStyle: const TextStyle(
-                                        color: Colors.white, fontSize: 18))),
                             style: ButtonStyle(
                                 elevation: MaterialStateProperty.all(10),
                                 shape: MaterialStateProperty.all<
@@ -130,6 +141,10 @@ class ProductsList extends StatelessWidget {
                                     MaterialStateProperty.all(Colors.black),
                                 shadowColor: MaterialStateProperty.all(
                                     const Color.fromARGB(255, 77, 77, 77))),
+                            child: Text('Add to cart',
+                                style: GoogleFonts.cantoraOne(
+                                    textStyle: const TextStyle(
+                                        color: Colors.white, fontSize: 18))),
                           ),
                         ],
                       ),
@@ -137,7 +152,7 @@ class ProductsList extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
                           children: [
-                            Icon(Icons.star),
+                            const Icon(Icons.star),
                             Text(
                               '${data[index].rating.rate}',
                               overflow: TextOverflow.clip,
