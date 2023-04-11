@@ -15,19 +15,25 @@ class InfoPageWidget extends StatelessWidget {
       required this.titleProduct,
       required this.descriptionProduct,
       required this.priceProduct,
-      required this.data});
+      required this.data,
+      required this.ratingProduct});
   final String imageProduct;
   final String titleProduct;
   final String descriptionProduct;
   final double priceProduct;
+  final Rating ratingProduct;
   final List<StoreModel> data;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       body: Padding(
         padding:
-            const EdgeInsets.only(left: 60, right: 60, top: 60, bottom: 60),
+            const EdgeInsets.only(left: 20, right: 20, top: 60, bottom: 60),
         child: Container(
           height: 800,
           decoration: const BoxDecoration(
@@ -96,6 +102,26 @@ class InfoPageWidget extends StatelessWidget {
                           ])),
                     ),
                   ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.star),
+                      Text(
+                        '${ratingProduct.rate}',
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.cantoraOne(
+                            textStyle: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500,
+                        )),
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),

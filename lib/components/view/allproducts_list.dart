@@ -51,11 +51,13 @@ class ProductsList extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => InfoPage(
-                                      imageProduct: data[index].image,
-                                      titleProduct: data[index].title,
-                                      descriptionProduct:
-                                          data[index].description,
-                                      priceProduct: data[index].price)));
+                                        imageProduct: data[index].image,
+                                        titleProduct: data[index].title,
+                                        descriptionProduct:
+                                            data[index].description,
+                                        priceProduct: data[index].price,
+                                        ratingProduct: data[index].rating,
+                                      )));
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 15),
@@ -128,8 +130,27 @@ class ProductsList extends StatelessWidget {
                                     MaterialStateProperty.all(Colors.black),
                                 shadowColor: MaterialStateProperty.all(
                                     const Color.fromARGB(255, 77, 77, 77))),
-                          )
+                          ),
                         ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            Icon(Icons.star),
+                            Text(
+                              '${data[index].rating.rate}',
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.cantoraOne(
+                                  textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w500,
+                              )),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
