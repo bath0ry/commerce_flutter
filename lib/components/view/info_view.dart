@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:commerce_flutter/data/models/items_model.dart';
 
 import '../../data/models/items_model.dart';
 import '../../data/models/store_model.dart';
@@ -16,132 +17,165 @@ class InfoPageWidget extends StatelessWidget {
       required this.descriptionProduct,
       required this.priceProduct,
       required this.data,
-      required this.ratingProduct});
+      required this.ratingProduct,
+      required this.idProduct,
+      required this.categoryProduct});
   final String imageProduct;
   final String titleProduct;
   final String descriptionProduct;
   final double priceProduct;
   final Rating ratingProduct;
+  final int idProduct;
+  final Category categoryProduct;
   final List<StoreModel> data;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      body: Padding(
-        padding:
-            const EdgeInsets.only(left: 20, right: 20, top: 60, bottom: 60),
-        child: Container(
-          height: 800,
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 255, 255, 255),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10),
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: Padding(
+          padding:
+              const EdgeInsets.only(left: 20, right: 20, top: 60, bottom: 60),
+          child: Container(
+            height: 800,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 255, 255, 255),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
+              border: Border(
+                  top: BorderSide(width: 1, color: Colors.black),
+                  bottom: BorderSide(width: 1, color: Colors.black),
+                  left: BorderSide(width: 1, color: Colors.black),
+                  right: BorderSide(width: 1, color: Colors.black)),
             ),
-            border: Border(
-                top: BorderSide(width: 1, color: Colors.black),
-                bottom: BorderSide(width: 1, color: Colors.black),
-                left: BorderSide(width: 1, color: Colors.black),
-                right: BorderSide(width: 1, color: Colors.black)),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Text(
-                    titleProduct,
-                    style: GoogleFonts.cantoraOne(
-                        textStyle: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w300,
-                            shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(1, 2),
-                            blurRadius: 25.0,
-                            color: Color.fromARGB(255, 100, 100, 100),
-                          ),
-                        ])),
-                    overflow: TextOverflow.clip,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Image.network(
-                    imageProduct,
-                    width: 250,
-                    height: 200,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      '\$' '$priceProduct',
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.center,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Text(
+                      titleProduct,
                       style: GoogleFonts.cantoraOne(
                           textStyle: const TextStyle(
                               color: Colors.black,
                               fontSize: 25,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w300,
                               shadows: <Shadow>[
                             Shadow(
-                              offset: Offset(1, 3),
-                              blurRadius: 8.0,
+                              offset: Offset(1, 2),
+                              blurRadius: 25.0,
                               color: Color.fromARGB(255, 100, 100, 100),
                             ),
                           ])),
+                      overflow: TextOverflow.clip,
+                      textAlign: TextAlign.center,
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Image.network(
+                      imageProduct,
+                      width: 250,
+                      height: 200,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(Icons.star),
                       Text(
-                        '${ratingProduct.rate}',
+                        '\$' '$priceProduct',
                         overflow: TextOverflow.clip,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.cantoraOne(
                             textStyle: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 19,
-                          fontWeight: FontWeight.w500,
-                        )),
+                                color: Colors.black,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                                shadows: <Shadow>[
+                              Shadow(
+                                offset: Offset(1, 3),
+                                blurRadius: 8.0,
+                                color: Color.fromARGB(255, 100, 100, 100),
+                              ),
+                            ])),
                       ),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    '$descriptionProduct',
-                    overflow: TextOverflow.clip,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.cantoraOne(
-                        textStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 19,
-                      fontWeight: FontWeight.w500,
-                    )),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.star),
+                        Text(
+                          '${ratingProduct.rate}',
+                          overflow: TextOverflow.clip,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.cantoraOne(
+                              textStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 19,
+                            fontWeight: FontWeight.w500,
+                          )),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      '$descriptionProduct',
+                      overflow: TextOverflow.clip,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.cantoraOne(
+                          textStyle: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w500,
+                      )),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Provider.of<ItemsStore>(context, listen: false)
+                          .addItem(StoreModel(
+                        id: idProduct,
+                        title: titleProduct,
+                        price: priceProduct,
+                        description: descriptionProduct,
+                        category: categoryProduct,
+                        image: imageProduct,
+                        rating: ratingProduct,
+                      ));
+                    },
+                    style: ButtonStyle(
+                        elevation: MaterialStateProperty.all(10),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
+                        fixedSize:
+                            MaterialStateProperty.all(const Size(120, 0)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.black),
+                        shadowColor: MaterialStateProperty.all(
+                            const Color.fromARGB(255, 77, 77, 77))),
+                    child: Text('Add to cart',
+                        style: GoogleFonts.cantoraOne(
+                            textStyle: const TextStyle(
+                                color: Colors.white, fontSize: 18))),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

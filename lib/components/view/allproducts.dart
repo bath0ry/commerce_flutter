@@ -41,7 +41,7 @@ class _ProductsState extends State<Products> {
             child: ProductsList(data: data),
           );
         } else {
-          return Container();
+          return Text('Erro de conexão com a internet');
         }
       },
       future: service.getStore(),

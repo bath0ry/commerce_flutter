@@ -57,6 +57,8 @@ class ProductsList extends StatelessWidget {
                                             data[index].description,
                                         priceProduct: data[index].price,
                                         ratingProduct: data[index].rating,
+                                        idProduct: data[index].id,
+                                        categoryProduct: data[index].category,
                                       )));
                         },
                         child: Padding(
@@ -84,6 +86,8 @@ class ProductsList extends StatelessWidget {
                                             data[index].description,
                                         priceProduct: data[index].price,
                                         ratingProduct: data[index].rating,
+                                        idProduct: data[index].id,
+                                        categoryProduct: data[index].category,
                                       )));
                         },
                         child: Padding(

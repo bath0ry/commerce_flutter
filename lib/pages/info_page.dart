@@ -10,13 +10,17 @@ class InfoPage extends StatelessWidget {
   final String descriptionProduct;
   final double priceProduct;
   final Rating ratingProduct;
+  final Category categoryProduct;
+  final int idProduct;
   const InfoPage(
       {super.key,
       required this.imageProduct,
       required this.titleProduct,
       required this.descriptionProduct,
       required this.priceProduct,
-      required this.ratingProduct});
+      required this.ratingProduct,
+      required this.idProduct,
+      required this.categoryProduct});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,8 @@ class InfoPage extends StatelessWidget {
       priceProduct: priceProduct,
       data: [],
       ratingProduct: ratingProduct,
+      idProduct: idProduct,
+      categoryProduct: categoryProduct,
     );
   }
 }
