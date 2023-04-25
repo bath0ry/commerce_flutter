@@ -1,4 +1,5 @@
 import 'package:commerce_flutter/pages/cart_page.dart';
+import 'package:commerce_flutter/pages/fav_page.dart';
 import 'package:commerce_flutter/themes/themes_colors.dart';
 
 import 'package:flutter/material.dart';
@@ -24,8 +25,11 @@ class Header extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20),
             child: IconButton(
               splashRadius: 1,
-              onPressed: () {},
-              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => FavPage()));
+              },
+              icon: const Icon(Icons.favorite),
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(ThemeColors.primaryColor)),
