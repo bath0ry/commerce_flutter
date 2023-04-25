@@ -1,6 +1,9 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
+import 'package:mockito/annotations.dart';
+
+@GenerateMocks([StoreModel])
 List<StoreModel> storeModelFromJson(String str) =>
     List<StoreModel>.from(json.decode(str).map((x) => StoreModel.fromJson(x)));
 
