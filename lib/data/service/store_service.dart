@@ -3,7 +3,6 @@ import 'package:commerce_flutter/data/models/store_model.dart';
 import 'package:dio/dio.dart';
 import 'package:mockito/annotations.dart';
 
-@GenerateMocks([StoreService])
 class StoreService {
   final Dio dio;
 
