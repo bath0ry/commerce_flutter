@@ -1,4 +1,4 @@
-import 'package:commerce_flutter/data/models/store_model.dart';
+import 'package:commerce_flutter/models/store_model.dart';
 import 'package:flutter/material.dart';
 
 class FavItems extends ChangeNotifier {
